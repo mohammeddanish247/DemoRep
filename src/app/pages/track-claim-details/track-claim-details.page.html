@@ -1,0 +1,202 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+  <div class="top">
+    <ion-card class="header-card" #image>
+      <lottie-player src="../../../assets/anim/track.json"  background="#dd2127"  speed="1" loop autoplay></lottie-player>
+      <h3></h3>
+  </ion-card> 
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <h3>Track Claims</h3>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-no-padding" size="7">
+            <ion-item color="secondary" class="no-padding" lines="none">
+              <ion-avatar slot="start">
+                <img src="assets/claim-icons/221753.svg" />
+              </ion-avatar>
+              <ion-label>
+                <h4>Current Status</h4>
+                <p>{{claimdetails.ClaimStatus}}</p>
+              </ion-label>
+            </ion-item>
+              <!-- <ion-item color="secondary" lines="none" lines="none">
+                <ion-avatar slot="start">
+                  <img src="assets/claim-icons/221753.svg" />
+                </ion-avatar>
+                <h4>Current Status</h4>
+                <p>{{claimdetails.ClaimStatus}}</p>
+              </ion-item> -->
+          </ion-col>
+          <ion-col class="ion-no-padding" size="5">
+              <ion-item color="secondary" class="no-padding" lines="none">
+                <ion-avatar slot="start">
+                  <img src="assets/claim-icons/628436.svg" />
+                </ion-avatar>
+                <ion-label>
+                <h4>Type</h4>
+                <p>{{claimdetails.ClaimType}}</p>
+                </ion-label>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <section>
+        
+    <div class="stepper-vertical" id="stepper1">
+      <div class="step editing" id="claim-registered">
+        <div class="anim">
+          <div class="step-circle">
+            <img src="assets/imgs/register.svg" />
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Claim Registered</div>
+          <div class="step-optional">{{claimdetails.ClaimRegistered}}<br> </div>
+        </div>
+      </div>
+      <div class="step" id="engineer-assigned">
+        <div class="anim">
+          <div class="step-circle">
+            <img src="assets/imgs/engg-assigned.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Engineer assigned</div>
+          <div class="step-optional">{{claimdetails.EngineerName}} <br> </div>
+        </div>
+      </div>
+      <div class="step" id="appointment-scheduled">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/appointment.svg" />
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Appointment scheduled</div>
+          <div class="step-optional"> Date: {{claimdetails.AppointmentDate}} <br> </div>
+        </div>
+      </div>
+      <div class="step" id="on-route">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/onroute.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">On route date</div>
+          <div class="step-optional">Date: {{claimdetails.EngineerOnRoute}} <br> </div>
+        </div>
+      </div>
+      <div class="step" id="on-arrived">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/arrieved.svg" alt="">
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Attended on</div>
+          <div class="step-optional">Date: {{claimdetails.AttendedDate}} <br> </div>
+        </div>
+      </div>
+      <div class="step" id="completed">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/completed.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Completed on</div>
+          <div class="step-optional">{{claimdetails.CompletionDate}} <br> </div>
+        </div>
+      </div>
+  </div>
+      </section>
+
+      <div
+        *ngIf="claimdetails.ClaimType=='Service' && claimdetails.CertificateURL!=-1 && claimdetails.CertificateURL"
+      >
+        <ion-card (click)="navToLink(claimdetails.CertificateURL)">
+          <ion-item color="secondary" lines="none">
+            <ion-avatar slot="start">
+              <img src="assets/claim-icons/clipboard.svg" />
+            </ion-avatar>
+            <ion-icon item-end name="ios-arrow-forward"></ion-icon>
+            <ion-label>
+              <h3>Service Report</h3>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </div>
+
+      <div *ngIf="(claimdetails.ClaimStatus=='Job Complete')">
+        <!-- <div
+          *ngIf="claimdetails.CustomerSatisfaction&&claimdetails.CustomerSatisfaction!=-1"
+          class="cd-timeline-block"
+        >
+          <ion-card>
+            <ion-item color="secondary" lines="none" class="ion-text-center">
+              <h3>Customer Satisfaction</h3>
+              <rating
+                [(ngModel)]="claimdetails.CustomerSatisfaction"
+                readOnly="true"
+              ></rating>
+            </ion-item>
+          </ion-card>
+        </div>
+
+        <div
+          *ngIf="!claimdetails.CustomerSatisfaction||claimdetails.CustomerSatisfaction==-1">
+          <ion-card>
+            <ion-item color="secondary" lines="none" class="ion-text-center">
+              <h3>Customer Satisfaction</h3>
+              <rating
+                [(ngModel)]="customerSatisfaction"
+                readOnly="false"
+                (ngModelChange)="onClaimRatingChanged($event)"
+              ></rating>
+            </ion-item>
+          </ion-card>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</ion-content>

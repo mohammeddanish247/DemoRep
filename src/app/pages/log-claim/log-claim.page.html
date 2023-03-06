@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-menu-button slot="start" class="menu-button" menu="main-menu"></ion-menu-button> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+  
+  <div class="top">
+    <ion-card class="header-card" #image>
+        <lottie-player src="../../../assets/anim/logclaim.json"  background="#dd2127"  speed="0.5" loop autoplay></lottie-player>
+        <h3>{{productData.path | cap | titlecase}}</h3>
+    </ion-card> 
+  </div>
+  
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <h3>Products</h3>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col class="products" size="4" *ngFor="let s of services" (click)="navToClaim(s)">
+          <ion-avatar>
+            <img src="../../../assets/imgs/products/{{s.ProductName}}.svg" (error) ="onImgError($event)"/>
+          </ion-avatar>
+          <p>{{s.ProductName}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- <div>
+    <ion-card class="card slide animate__animated animate__fadeInLeft" >
+      <ion-card-header style="background-color: #ffffff;">
+        <ion-card-subtitle><h1>Available Products</h1></ion-card-subtitle>
+      </ion-card-header>
+      <ion-item lines="none" (click)="navToClaim('Boiler')">
+        <ion-icon style="color: #ffffff;" slot="start"  name='eye'></ion-icon>
+        <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          <h6>Boiler</h6>
+        </div>
+      </ion-item>
+      <ion-item lines="none" (click)="navToClaim('Appliance')">
+        <ion-icon style="color: #ffffff;" slot="start"  name='document'></ion-icon>
+        <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          <h6>Appliance</h6>
+        </div>
+      </ion-item>
+      <ion-item lines="none" >
+        <ion-icon style="color: #ffffff;" slot="start"  name='bookmark'></ion-icon>
+        <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          <h6>Plumbing</h6>
+        </div>
+      </ion-item>
+      <ion-item lines="none" >
+        <ion-icon style="color: #ffffff;" slot="start"  name='arrow-up'></ion-icon>
+        <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          <h6>Security</h6>
+        </div>
+      </ion-item>      
+      <ion-item lines="none" >
+        <ion-icon style="color: #ffffff;" slot="start"  name='arrow-up'></ion-icon>
+        <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          <h6>Pest</h6>
+        </div>
+      </ion-item>   
+    </ion-card>
+  </div> -->
+  
+</ion-content>

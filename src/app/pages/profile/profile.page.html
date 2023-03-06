@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <ng-container *ngIf="!isdataArrived">
+    <div class="container"><h3 class="heading" style="width: 70%;"><ion-skeleton-text animated style="width: 70%; height: 40px; margin: auto; border-radius: 10px;"></ion-skeleton-text></h3>
+    </div>
+    <div class="profile_pic_div">
+      <div class="profile_pic"><ion-avatar style="width: 150px; height: 150px; margin: auto;">
+        <ion-skeleton-text animated ></ion-skeleton-text>
+      </ion-avatar></div>
+    </div>
+    <div class="services">
+      <ion-row>
+        <ion-col size="4" *ngFor="let a of imgdata">
+          <ion-card>
+            <div class="cardTitle">
+              <div>
+                <ion-avatar style="width: 76px; height: 76px; margin: auto;">
+                  <ion-skeleton-text animated ></ion-skeleton-text>
+                </ion-avatar>
+              </div>
+              <div style="width: 100%; margin: auto; border-radius: 10px; margin-top: 5px;">
+                <ion-skeleton-text animated ></ion-skeleton-text>
+                <ion-skeleton-text animated ></ion-skeleton-text>
+                <ion-skeleton-text animated ></ion-skeleton-text>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isdataArrived">
+  <div class="container"><h3 class="heading"> {{userdata.UserName}} </h3>
+  </div>
+  <div class="profile_pic_div">
+    <div class="profile_pic"><img src="{{imagedata}}" (error)="onImgError($event)"></div>
+      <div class="profile_pic_edit" id="edit-details" (click)="takePicture()"><ion-icon name="camera" style="color:rgb(255, 255, 255); font-size: 22px;"></ion-icon></div>
+  </div>
+  <div class="services">
+    <ion-row>
+      <ion-col size="4" *ngFor="let a of imgdata">
+        <ion-card (click)="cardClick(a)">
+          <div class="cardTitle">
+            <div>
+              <img src="{{a.imgurl}}">
+            </div>
+            <div>
+              <ion-text class="small">{{a.imgText}}</ion-text>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+  
+  <swiper #swiper [config]="config">
+    <ng-template swiperSlide *ngFor="let o of policyDetails">
+      <div class="policy">
+        <div class="previouse-button" (click)="prev()"><ion-icon name="chevron-back-outline" style="font-size: 24px;"></ion-icon></div>
+        <div class="next-button" (click)="next()"><ion-icon name="chevron-forward-outline" style="font-size: 24px;"></ion-icon></div>
+        <ion-card>
+            <ion-row>
+              <ion-col size="10" style="padding: 20px 0 20px 5px;">
+                <div class="policy_details">
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>
+                        <ion-text> <b>Policy :</b> </ion-text>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label><ion-text>{{userdata.policyName}}</ion-text></ion-label>
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>
+                        <ion-text> <b>Make :</b> </ion-text> 
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label><ion-text>{{userdata.BoilerMake}}</ion-text></ion-label>
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>
+                        <ion-text> <b>Model :</b> </ion-text>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label><ion-text>{{userdata.BoilerModel}}</ion-text></ion-label>
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>
+                        <ion-text> <b>Renewal Date :</b> </ion-text>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label><ion-text>{{userdata.RenwealDate}}</ion-text></ion-label>
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>
+                        <ion-text><b> Address :</b></ion-text> 
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label><ion-text>{{userdata.Address}}</ion-text></ion-label>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+              <ion-col size="2" id="dot-image">
+                <img src="/assets/imgs/products/Dots Hero Section.svg">
+              </ion-col>
+            </ion-row>
+    
+            <h4>What’s Covered</h4>
+    
+            <ion-row id="servicelist" class="ion-padding">
+              <ion-col class="ion-no-padding" size="6" *ngFor="let b of userdata.coveredProducts" style="display: grid; align-items: center;">
+                <ion-row class="pc ion-no-padding">
+                  <ion-col size="3"><img src="{{b.Icon}}" style="width: 30px; height: 30px;"></ion-col>
+                  <ion-col size="9"><p>{{b.ProductName}}</p></ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+    
+            <ion-row >
+              <ion-col size="6" id="change_policy_button">
+                <ion-button ><b> Change Your Policy</b></ion-button>
+              </ion-col>
+    
+              <ion-col size="6" id="link"> 
+                <a href="{{userdata.IPIDDocumentLink}}">View IPID</a>
+                <a href="{{userdata.TOCDocumentLink}}">Terms & Conditions</a>
+                <a href="">Cancel your policy</a>
+              </ion-col>
+            </ion-row>
+        </ion-card>
+      </div>
+    </ng-template>
+  </swiper>
+
+    <hr>
+
+    <div class="ac_details">
+      <h3>Account Details</h3>
+      <ion-text id="ion-text">Personal Details</ion-text>
+      
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text style="font-weight: 500;">Account Holder Name</ion-text>
+        </ion-label>
+        <ion-label><ion-text>{{userdata.NameofAccount}}</ion-text></ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text style="font-weight:500;">Correspondence address</ion-text>
+        </ion-label>
+        <ion-label>
+          <ion-text>{{userdata.Address}}</ion-text><br><br>
+          <p style="font-size: large;"><b>Are you moving home ?</b></p>
+          <p>If you want to change your energy supply or services to another property,</p>
+          <a href=""><p>Let us know you’re moving</p></a>
+        </ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text style="font-weight:500;">Mobile number</ion-text>
+        </ion-label>
+        <ion-label><ion-text>{{userdata.Mobile}} <a href=""><p>Update mobile Number</p></a></ion-text> </ion-label>
+        
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          <ion-text style="font-weight:500;">Home number</ion-text>
+        </ion-label>
+        <ion-label><ion-text>{{userdata.HomePhone}} <a href=""><p>Update home number</p></a></ion-text> </ion-label>
+      </ion-item>
+    </div>
+
+    <hr>
+
+    <div class="preference">
+      <h3>Marketing Preference</h3>
+      <ion-row>
+        <ion-col size="6">
+          <p id="ion-text">Your Marketing Preference</p>
+        </ion-col>
+        <ion-col size="6" id="preferOption">
+          <ion-text *ngFor="let c of marketingPreference"><img [src]="getImage(c)" >{{c}}</ion-text>
+          <ion-label><ion-text><a href=""><p>Update preferences</p></a></ion-text></ion-label>
+        </ion-col>
+      </ion-row>
+   </div>
+  
+  </ng-container>
+
+  </ion-content>
+  

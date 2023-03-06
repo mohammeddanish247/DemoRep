@@ -1,0 +1,41 @@
+
+
+.wrapper{
+    width: 100%;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #dd2127;
+    display: flex;
+    align-items: center;
+    margin-top: 10px 0;
+}
+ion-item{
+    margin-bottom: 20px;
+    .icon{
+        width: 50px;
+        height: 50px;
+        margin: 10px 10px 10px 0;
+        background-color: #dd2127;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+}
+
+.mail{
+    font-size: 14px !important;
+}
+
+.options{
+    display: flex;
+    margin: 20px  0;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+span{
+    font-weight: bolder;
+}

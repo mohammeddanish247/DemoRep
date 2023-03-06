@@ -1,0 +1,32 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Cards</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content >
+  <div class="amination">
+    <lottie-player src="../../../assets/anim/not-found.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center"> No Claim Found for this product.<br> <div>Please call our office on 03450774177 for further assistance. </div> </div>
+    <ion-button (click)="onClickCallUs()" expand="block" shape="round" style="width: 50%; margin: 20px auto;" >
+      Call Us
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary" style="padding: 15px 0;">
+    <div class="footer align-items-center justify-content-space-between">
+    <ion-button strong shape="round" color="primary" (click)="openModal()">
+    <!-- <ion-icon slot="end" name="checkmark-done-outline"></ion-icon> -->
+    <span>Pay &pound;{{access_value}}</span>
+    </ion-button>
+    </div>
+  </ion-toolbar>
+
+</ion-footer>

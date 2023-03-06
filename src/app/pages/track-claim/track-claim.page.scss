@@ -1,0 +1,22 @@
+
+ion-accordion {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background-color: #fdf0f1;
+
+    ion-item{
+        --ion-background-color: #fdf0f1;
+    }
+}
+
+
+.acc-item {
+    padding: 16px 0;
+}
+
+ion-skeleton-text {
+    --border-radius: 30px;
+  }

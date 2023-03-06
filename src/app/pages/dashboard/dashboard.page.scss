@@ -1,0 +1,227 @@
+ion-content{
+// --ion-background-color:#ffdddd  ;
+display: flex;
+flex-direction: column;
+transition: all .3s;
+}
+
+.ioncontent{
+    --background: linear-gradient(180deg, #ffdddd 7%, #ff9494 80%); //F67B6B
+}
+
+.lists{
+    background-color: #FDF0F1;
+}
+
+.topp{
+    width: 100%;
+    background: url(../../../assets/imgs/top-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: -webkit-fixed;
+    position: -moz-fixed;
+    position: -ms-fixed;
+    position: -o-fixed;
+    position: fixed;
+
+    ion-grid{
+        padding: 5%;
+        img{
+            background-color: transparent;
+            rotate: -5deg;
+            width: 80%;
+        }
+        p{
+            text-align: left;
+            line-height: 5.5vw;
+            span{
+                font-family: 'Playfair Display';
+            }
+        }
+        ion-icon{
+            font-size: 44px;
+        }
+        .watchnow{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .heroimage{
+            scale: 120%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        
+        }
+
+        @media screen and (max-width: 768px) {
+
+        }
+        @media screen and (max-width: 480px) {
+                margin: 0 3%;
+                padding: 0;
+        }
+    }
+
+}
+
+.bottomm{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    // background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+
+.first-header{
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    -webkit-box-shadow: 0px -2px 1px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px -2px 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px -2px 1px 1px rgba(0,0,0,0.1);
+}
+
+.segment-header-wrapper{
+    width: 100%;
+    // background-color: #dd2127;
+    position: sticky;
+    z-index: 100;
+    top: 0px;
+    padding-top: 5px;
+}
+
+.segment-header{
+    position: sticky;
+    z-index: 100;
+    top: 0px;
+    background-color: #ffffff;
+    text-align: center;
+    h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        position: relative;
+      }
+      h3:before {
+        content: "";
+        display: block;
+        width: 20vw;
+        height: 3px;
+        background: #dd2127b4;
+        left: 5%;
+        top: 50%;
+        position: absolute;
+        border-radius: 5px;
+
+      }
+      h3:after {
+        content: "";
+        display: block;
+        width: 20vw;
+        height: 3px;
+        background: #dd2127b4;
+        right: 5%;
+        top: 50%;
+        position: absolute;
+        border-radius: 5px;
+      }
+
+}
+
+.segment-content{
+    background-color: #ffffff;
+    padding: 20px 0;
+}
+
+
+
+
+
+ion-toolbar{
+    background-color: #ffdddd;
+}
+
+ion-card{
+    box-shadow: none !important;
+    text-align: center;
+    // background: #fdf0f1;
+}
+
+
+
+.title247 {
+    width: 110px;
+    float: right;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.header-ios ion-toolbar:last-of-type {
+    --border-width: 0 0 0 0 !important;
+}
+.header-md ion-toolbar:last-of-type {
+    --border-width: 0 0 0 0    !important;
+}
+
+
+
+
+.ourservices{
+    ion-col{
+        margin-bottom: 5%;
+    }
+    ion-card{
+        margin: 0 !important;
+        border-radius: 15px;
+        img{
+            padding: 10px;
+        }
+        ion-card-title{
+            // font-size: 24px;
+        }
+          ion-card-header{
+            padding: 0 !important;
+        }
+    }
+    .full-card{
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px;
+        border-radius: 15px;
+        height: 170px;
+        ion-icon{
+            font-size: 2rem;
+        }
+        img{
+        right: 10px;
+        position: absolute;
+        }
+        ion-icon{ 
+            font-size: 50px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        .full-card{
+            height: 110px;
+            ion-icon{
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+.slide{
+    width: 90%;
+    border-radius: 20px;
+}
+
+
+.logo-thumbnail{
+    width: 120px;
+    height: 50px;
+    padding: 10px;
+}

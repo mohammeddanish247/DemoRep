@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+
+  <div class="top">
+    <ion-card class="header-card" #image>
+      <div>
+        <lottie-player src="../../../assets/anim/track.json"  background="#dd2127"  speed="1" loop  autoplay></lottie-player>
+        <h3>Track Services</h3>
+      </div>
+    </ion-card> 
+  </div>
+ 
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <h3></h3>
+
+    <div class="stepper-vertical" id="stepper1">
+      <div class="step editing">
+        <div class="anim">
+          <div class="step-circle">
+            <img src="assets/imgs/register.svg" />
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Service/CP12 registered</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="anim">
+          <div class="step-circle">
+            <img src="assets/imgs/engg-assigned.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Engineer assigned</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/appointment.svg" />
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Appointment scheduled</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/onroute.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">On route date</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/arrieved.svg" alt="">
+          </div>
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Attended on</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="anim">
+          <div  class="step-circle">
+            <img src="assets/imgs/completed.svg" />
+          </div>          
+          <div class="step-bar">
+            <div class="step-bar-left"></div>
+            <div class="step-bar-right"></div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="step-title">Completed on</div>
+          <div class="step-optional">Date: 23/11/2022 13:00 <br> Your request for the boiler service/CP12 has been processed.</div>
+        </div>
+      </div>
+  </div>
+  <button (click)="nextStep()">Next</button>
+  </div>
+
+</ion-content>

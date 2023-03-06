@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title>
+    </ion-title>
+    <ion-menu-button slot="start" class="menu-button" menu="main-menu" #menu></ion-menu-button>
+    <ion-thumbnail class="logo-thumbnail" slot="end" (click)="onLogoClick()">
+      <img src="../../../assets/imgs/logo.svg"/>
+    </ion-thumbnail>
+    <!-- <img slot="end" src="../../../assets/imgs/logo.svg" (click)="onLogoClick()"/> -->
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="ioncontent" [fullscreen]="true" [scrollEvents]="true" force-overscroll="true" (ionScroll)="ionScrolling($event)" #ionContent>
+  <div class="ion-container">
+    <div class="lists">
+
+      <div class="topp">
+        <div class="list-item" #topSection>
+          <swiper [config]="swiperConfig" class="hero" *ngIf="heroSlide.length > 0" #SwiperComponent>
+            <ng-template *ngFor="let s of heroSlide" swiperSlide>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6" >
+                      <p class="ion-no-margin">
+                        <span>{{s.h}}</span><img class="mark" src="../../../assets/imgs/mark.png" alt=""><br>
+                      </p>
+                      <div class="ion-no-margin" style="opacity: 0.7;"><p>{{s.p}}</p></div>
+                    </ion-col>
+                    <ion-col size="6" class="heroimage" [style.background-image]="'url('+ s.img +')'">
+                      <!-- <div class="heroimage" [style.background-image]="'url('+ s.img +')'"></div> -->
+                    </ion-col>
+                  </ion-row>
+                  <ion-row *ngIf="s.button" class="ion-margin-top">
+                    <ion-col size="6" >
+                      <ion-button shape="round" color="primary" (click)="heroBtnClick(s.btnLink)">
+                      {{s.button}}
+                      </ion-button>
+                    </ion-col>
+                    <ion-col class="watchnow" size="6" (click)="watchClicked()">
+                      <ion-icon name="play-circle-outline" color="primary"></ion-icon>
+                      <ion-text color="primary">Watch Now</ion-text>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+
+      <div class="bottomm" #bottomSection>  
+        <div class="list-item">
+          <div class="segment-header-wrapper" #firstHeaderWrapper>
+            <div class="segment-header first-header">
+              <h3>Our Services</h3>
+            </div>
+          </div>
+          <div class="segment-content">
+            <div class="ourservices">  
+              <ion-grid class="ion-no-padding">
+                <ion-row class="animate__animated animate__fadeInLeft" style="width: 90%; margin: 0 auto;">
+                  <ion-col size="12"  *ngFor="let d of cardData.slice(-2,-1)">
+                    <div class="fullcard">
+                      <ion-card id="full-card" color="light" class="full-card" (click)="serviceClick(d)" >
+                        <img src="{{d.img}}" alt="">
+                        <ion-card-header>
+                        <ion-card-title><p class="ion-no-margin">{{d.name}}</p></ion-card-title>
+                        </ion-card-header>
+                        <ion-icon name="arrow-forward-circle"></ion-icon>
+                      </ion-card>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="animate__animated animate__fadeInRight">
+                  <ion-col size="12">
+                    <swiper [config]="config2" #swiperSlideShow style="padding: 0% 5% 0 5%;">
+                      <ng-template swiperSlide *ngFor="let d of cardData.slice(0,-2)">
+                        <ion-card color="light" (click)="serviceClick(d)" class="service-slider ion-no-padding">
+                          <img src="{{d.img}}" />
+                          <ion-card-header>
+                            <ion-card-title><p>{{d.name.split(" ",1)[0]}}<br>{{d.name.split(" ").slice(1).join(" ")}}</p></ion-card-title>
+                          </ion-card-header>
+                        </ion-card>
+                      </ng-template>
+                    </swiper>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="animate__animated animate__fadeInLeft" style="width: 90%; margin: 0 auto;">
+                  <ion-col size="12"  *ngFor="let d of cardData.slice(-1)">
+                    <div class="fullcard">
+                      <ion-card id="full-card" color="light" class="full-card" (click)="serviceClick(d)" >
+                        <img src="{{d.img}}" alt="">
+                        <ion-card-header>
+                        <ion-card-title><p class="ion-no-margin">{{d.name}}</p></ion-card-title>
+                        </ion-card-header>
+                        <ion-icon name="arrow-forward-circle"></ion-icon>
+                      </ion-card>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>  
+            <div class="promoSlider ion-margin-bottom">
+              <ion-slides [options]="promo">
+                <ion-slide *ngFor="let image of promoSlide">
+                  <ion-card class="ion-no-margin slide animate__animated animate__fadeInUp">
+                    <img class="img" src="{{image.src}}"/>
+                  </ion-card>
+                </ion-slide>
+              </ion-slides>
+              <div id="terms"></div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="list-item">
+          <div class="segment-header">
+            <h3 >Terms</h3>
+          </div>
+          <div class="segment-content">
+            <app-terms-and-conditions></app-terms-and-conditions>
+          </div>
+        </div>
+        
+        <div class="list-item">
+          <div class="segment-header">
+            <h3 >Our Partners</h3>
+          </div>
+          <div class="segment-content">
+            <div>
+              <ion-grid fixed>
+                <ion-row>
+                  <ion-col size="4" size-md="3" size-lg="2" *ngFor="let i of partners">
+                    <ion-card style="background:transparent;">
+                      <img src="{{i.img}}" alt="">
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,21 @@
+ion-content{
+  --offset-top: 0px;
+  position: absolute;
+  --ion-background-color: #FFF;
+}
+page-eligibilityform {
+    .scroll-content {
+      background-color: #f4f4f7 !important;
+    }
+    .alert {
+      color: red;
+    }
+}
+
+.card{
+  margin-top: 10vh;
+}
+
+ion-input{
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+}

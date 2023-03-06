@@ -1,0 +1,46 @@
+ion-content{
+    --background: url(../../../assets/imgs/intro-bg.png);
+    --background-size: cover;
+    --background-position: center;
+    --background-repeat: no-repeat;
+
+}
+
+.intro-main{
+    color: #fff;
+    .intro-top{
+        margin-top: 3vh;
+        ion-button{
+            // font-size: 1rem;
+            text-transform: capitalize;
+        }
+    }
+    ion-fab{
+        bottom: 10%;
+        right: 5%;
+    }
+}
+
+
+ion-fab-button{
+    --border-radius: 33px;
+    transition: all 0.5s;
+    transition-delay: 0.1s;
+    span{
+        opacity: 0;
+    }
+    &.active{
+    width: 150px;
+    --border-radius: 33px;
+    }
+}
+
+.swiper-wrapperr{
+    display: flex;
+    margin: auto;
+    width: 90%;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    max-height: 1024px;
+}

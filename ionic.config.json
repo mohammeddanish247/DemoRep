@@ -1,0 +1,7 @@
+{
+  "name": "My247",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

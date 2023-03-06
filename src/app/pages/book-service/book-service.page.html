@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Book Service</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="amination" *ngIf="isloading">
+    <lottie-player src="../../../assets/anim/loading.json"  style="width: 50%;height: 20%; margin: 0 auto; rotate: 90deg;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center"> Please Wait...<br> While we are processing your data. <div></div> </div>
+  </div>
+
+  <div class="amination" *ngIf="HasBoilerService">
+    <lottie-player src="../../../assets/anim/not-found.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center"> No Service Found for this product.<br> <div>Please call our office on 03450774177 for further assistance. </div> </div>
+    <ion-button (click)="onClickCallUs()" expand="block" shape="round" style="width: 50%; margin: 20px auto;" >
+      Call Us
+    </ion-button>
+  </div>
+  
+  <ng-container *ngIf="isBookingInfoAvailabe">
+    <div class="amination" *ngIf="BookingInfo.BookingStatus == 'TOBEBOOKED'">
+      <lottie-player src="../../../assets/anim/manwithlaptop.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+      <div class="heading ion-text-center"> Book Boiler Service/CP12.<br> <div>Kindly answer the following questions. These questions will help us better assist you and book your service/CP12 Certification. </div> </div>
+      <ion-button (click)="startClicked()" expand="block" shape="round" style="width: 50%; margin: 20px auto;" > Start </ion-button>
+    </div>
+  
+    <div class="amination" *ngIf="BookingInfo.BookingStatus == 'BOOKED'">
+      <lottie-player src="../../../assets/anim/booked.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+      <div class="heading ion-text-center"> Service Booked<br> 
+        <div> Your Service is booked for {{EngineerAllocatedForDate}} Message to be defined.</div> </div>
+    </div>
+  
+    <div class="amination" *ngIf="BookingInfo.BookingStatus == 'TOOEARLY'">
+      <lottie-player src="../../../assets/anim/tooearly.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+      <div class="heading ion-text-center"> Service Due<br>
+        <div>Your Service is due {{serviceDueData}}, We will contact you nearer the time. Message to be defined.</div> </div>
+    </div>
+  
+    <div class="amination" *ngIf="BookingInfo.BookingStatus == 'NOAPPOINTMENT'">
+      <lottie-player src="../../../assets/anim/not-found.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+      <div class="heading ion-text-center"> No Appointments Available<br> 
+        <div> No Appointments Available Message to be defined. </div> </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="showQuestion">
+    <ion-grid fixed style="margin-top: 70px;">
+      <ion-row>
+        <ion-col size="4">
+          <lottie-player src="../../../assets/anim/agent.json" speed="1" loop autoplay #lottiePlayer></lottie-player>
+        </ion-col>
+        <ion-col color="medium" size="8" style="padding-right: 5%;">
+          <p color="dark" id="bubble" class="speech-bubble animate__animated animate__bounceIn">{{s.Question}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+         <ion-slides [options]="slidesOpts" (ionSlideWillChange)="onSlidesChanged()" (ionSlideDidChange)="onSlidesDidChange()">
+          <ion-slide *ngFor="let slide of questions">
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="12" class="ion-text-center ion-padding" style="color: #bca4a4;">{{s.Information}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <form [formGroup]="claimForm">
+                    <div class="qType" *ngIf="slide.Type=='Yes/No'">
+                      <ion-list>
+                        <ion-radio-group name="auto" formControlName="{{slide.ID}}">
+                          <ion-list-header class="ion-no-padding">
+                            <ion-label>Please Select.</ion-label>
+                          </ion-list-header>
+                          <div class="radio-group">
+                            <ion-item color="medium">
+                              <ion-label>Yes</ion-label> &nbsp; &nbsp;
+                              <ion-radio value="Yes"></ion-radio>
+                            </ion-item>
+                            <ion-item color="medium">
+                              <ion-label>No</ion-label> &nbsp; &nbsp;
+                              <ion-radio value="No"></ion-radio>
+                            </ion-item>
+                          </div>
+                        </ion-radio-group>
+                      </ion-list>
+                    </div>
+                    <div class="qType" *ngIf="slide.Type=='TextField'">
+                      <ion-input type="text" placeholder="Type Your Answer Here" formControlName="{{slide.ID}}"></ion-input>
+                    </div>
+                    <div class="qType" *ngIf="slide.Type=='Dropdown'">
+                      <ion-item>
+                        <ion-label>Please Select.</ion-label><br>
+                        <ion-select interface="action-sheet"  placeholder="Available Options" formControlName="{{slide.ID}}">
+                          <!-- interface="action-sheet" -->
+                          <ng-container *ngFor="let o of slide.Options">
+                            <ion-select-option value="{{o.value}}" >{{o.option}}</ion-select-option>
+                          </ng-container>
+                        </ion-select>
+                      </ion-item>
+                    </div>
+                    <div class="qType" *ngIf="slide.Type=='MultilineTextBox'">
+                    <ion-textarea formControlName="{{slide.ID}}" placeholder="Describe Your Issues."></ion-textarea>
+                    </div>
+                  </form>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-slide>
+         </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary" style="padding: 15px 0;">
+    <div class="footer align-items-center justify-content-space-between"  *ngIf="(questions && questions.length && (!isServiceSubmitted))">
+      <ion-button style="width: 120px;" strong shape="round" color="dark"
+        [disabled]="isBeginning" (click)="onBackButtonTouched()" >
+        <span>Back</span>
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+      </ion-button>
+      <ion-button style="width: 120px;" strong shape="round" color="primary" [hidden]="isEnd || isFinalEnd"
+        (click)="onNextButtonTouched()">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <span>Next</span>
+      </ion-button>
+      <ion-button *ngIf="isEnd" strong shape="round" color="success"
+      (click)="onSubmitTouched()">
+      <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+      <span>Submit</span>
+      </ion-button>
+      <!-- <ion-button *ngIf="isFinalEnd" strong shape="round" color="success"
+      (click)="onFinalSubmitTouched()">
+      <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+      <span>Log Claim</span>
+      </ion-button> -->
+    </div>
+  </ion-toolbar>
+
+</ion-footer>

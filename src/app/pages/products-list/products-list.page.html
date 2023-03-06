@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+  
+  <div class="top">
+    <ion-card class="header-card" #image>
+      <div *ngIf="productData.productValue==1" style="width: 100%; height: 100%;">
+        <lottie-player src="../../../assets/anim/boiler.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+        <h3>Boiler Service</h3>
+      </div>
+  
+      <div *ngIf="productData.productValue==2" style="width: 100%; height: 100%;">
+         <lottie-player src="../../../assets/anim/appliances.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+         <h3>Appliance</h3>
+      </div>
+  
+      <div *ngIf="productData.productValue==3" style="width: 100%; height: 80%; margin-top: 4vh;">
+        <lottie-player src="../../../assets/anim/home-service.json"  background="#dd2127"  speed="0.5" loop autoplay></lottie-player>
+        <h3>Home Emergency</h3>
+      </div>
+  
+    </ion-card> 
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+
+    <h3>Product List</h3>
+
+    <div class="item-container" *ngIf="!(productslist.length) && !noDataFound">
+      <ion-item color="secondary" class="no-padding" *ngFor="let item of [].constructor(10)">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <!-- <div *ngIf="(productslist.length>0)">
+      <ion-card class="card slide animate__animated animate__fadeInLeft" *ngFor="let p of productslist" (click)="navToPage(p.ProductID)">
+        <ion-item lines="none">
+          <ion-icon style="color: #ffffff;" slot="start"  name='cube'></ion-icon>
+          <ion-icon style="color: #ffffff;" slot="end"  name='chevron-forward'></ion-icon>
+          <div class="item-text" style="color: #ffffff;">
+            <h6>{{p.ProductName}}</h6>
+          </div>
+        </ion-item>
+      </ion-card>
+    </div> -->
+
+    <div class="item-container" *ngIf="(productslist.length>0)">
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft"  *ngFor="let p of productslist" (click)="navToPage(p)">
+        <!-- <ion-icon style="color: #ffffff;" slot="start"  name='cube'></ion-icon> -->
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/{{p.ProductName}}.svg" (error)="onImgError($event)"/>
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap small">
+            {{p.ProductName}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+
+    <ion-card class="card slide animate__animated animate__fadeInLeft" *ngIf="noDataFound">
+      <ion-item lines="none">
+        <ion-icon slot="start" style="color: #ffffff;" name='alert-circle'></ion-icon>
+        <div class="item-text" style="color: #ffffff;">
+          No addresses found with the selected cover.
+        </div>
+      </ion-item>
+  </ion-card>  
+
+  </div>
+
+
+</ion-content>

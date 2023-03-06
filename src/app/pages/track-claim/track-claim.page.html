@@ -1,0 +1,203 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+
+  <div class="top">
+    <ion-card class="header-card" #image>
+        <lottie-player src="../../../assets/anim/files.json"  background="#dd2127"  speed="1" loop autoplay></lottie-player>
+        <h3>{{productData.path | cap | titlecase}}</h3>
+    </ion-card> 
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <h3>All Claims</h3>
+
+    <div class="item-container" *ngIf="!claimslist.length">
+      <ion-item color="secondary" class="no-padding" *ngFor="let item of [].constructor(10)">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <ion-accordion-group  [value]="['first']">
+      <ion-accordion value="first" class="no-ripple ion-padding">
+        <ion-item slot="header"  class="no-padding" lines="none">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/imgs/claim-active.png" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>Active Claims</h2>
+            <p>Expand this section to see avtive claims</p>
+          </ion-label>
+        </ion-item>
+        <div class="acc-item" slot="content"> 
+          <ion-item class="no-padding" *ngFor="let d of incomplete" (click)="navToPage(d)">
+            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            <!-- <ion-avatar slot="start">
+              <img src="../../../assets/imgs/avatar.svg" />
+            </ion-avatar> -->
+            <ion-label>
+              <p class="ion-text-wrap">
+              Job ID: {{d.JobID}} <br>
+              Job Type: {{d.ClaimType}} <br>
+              Status : {{d.ClaimStatus}} <br>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item class="no-padding" *ngIf="!incomplete.length">
+            <!-- <ion-icon slot="end" name="chevron-forward"></ion-icon> -->
+            <!-- <ion-avatar slot="start">
+              <img src="../../../assets/imgs/avatar.svg" />
+            </ion-avatar> -->
+            <ion-label>
+              <p class="ion-text-wrap">
+                No Active Claims For This Address
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-accordion>
+    
+      <ion-accordion value="second" class="no-ripple ion-padding">
+        <ion-item slot="header"  class="no-padding" lines="none">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="../../../assets/imgs/claim-completed.png" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2 class="ion-text-wrap">Completed Claims</h2>
+            <p>Expand this section to see avtive claims</p>
+          </ion-label>
+        </ion-item>
+        <div class="acc-item" slot="content"> 
+          <ion-item class="no-padding" *ngFor="let d of completed" (click)="navToPage(d)">
+            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            <!-- <ion-avatar slot="start">
+              <img src="../../../assets/imgs/avatar.svg" />
+            </ion-avatar> -->
+            <ion-label>
+              <p class="ion-text-wrap">
+              Job ID: {{d.JobID}} <br>
+              Job Type: {{d.ClaimType}} <br>
+              Status : {{d.ClaimStatus}} <br>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item class="no-padding" *ngIf="!completed.length">
+            <!-- <ion-icon slot="end" name="chevron-forward"></ion-icon> -->
+            <ion-avatar slot="start">
+              <img src="../../../assets/imgs/avatar.svg" />
+            </ion-avatar>
+            <ion-label>
+              <p class="ion-text-wrap">
+                No Completed Claims For This Address
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-accordion>
+    
+    </ion-accordion-group>
+  </div>
+</ion-content>
+<!-- 
+  <ion-accordion-group  [value]="['first']">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+          <ion-avatar slot="start">
+            <img src="../../../assets/imgs/avatar.svg" />
+          </ion-avatar>
+        <ion-label>
+          <h2>Active Claims</h2>
+          <p>Expand this section to see avtive claims</p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content"> 
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let d of incomplete">
+              <ion-card>
+                <img src="../../../assets/anim/filegif.gif" alt="">
+                  Claim ID: {{d.JobID}}
+              </ion-card>
+              <ion-card *ngIf="!incomplete.length">
+                <ion-item text-wrap>
+                  <ion-icon item-start name="alert"></ion-icon>
+                  <h2>No Active Claims For This Address</h2>
+                </ion-item>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label> Completed Claims</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let d of completed">
+              <ion-card>
+                <ion-card-content>
+                  Claim ID: {{d.JobID}}
+                </ion-card-content>
+              </ion-card>
+              <ion-card *ngIf="!completed.length">
+                <ion-item text-wrap>
+                  <ion-icon item-start name="alert"></ion-icon>
+                  <h2>No Completed Claims For This Address</h2>
+                </ion-item>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Other Claims</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Third Content
+      </div>
+    </ion-accordion>
+  </ion-accordion-group> -->
+
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let d of claimslist">
+        <ion-card>
+          <ion-card-content>
+            Claim ID: {{d.JobID}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+  <!-- <ion-item *ngFor="let n of itemArray">
+    <ion-label>{{n}}</ion-label>
+  </ion-item>
+</ion-content> -->

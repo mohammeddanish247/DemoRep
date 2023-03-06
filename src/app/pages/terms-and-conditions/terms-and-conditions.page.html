@@ -1,0 +1,36 @@
+<swiper class="blog-slider" [config]="swiperConfig" #SwiperComponent>
+  <ng-template class="blog-slider__item" swiperSlide>
+    <div class="blog-slider__img">
+      <img src="https://www.woolfootheating.co.uk/wp-content/uploads/2019/01/Boiler-breakdown.jpg" alt="">
+    </div>
+    <div class="blog-slider__content">
+      <!-- <span class="blog-slider__code">26 December 2019</span> -->
+      <div class="blog-slider__title">Boiler Breakdown Policy</div>
+      <div class="blog-slider__text">Please read the following terms and conditions document carefully. They set out the terms of a legally binding agreement between you, us, and the insurer. The downloadable file is attached below for your convenience.</div>
+      <ion-button (click)="onClick()" expand="block" shape="round">READ MORE</ion-button>
+    </div>
+  </ng-template>
+  <ng-template class="blog-slider__item" swiperSlide>
+    <div class="blog-slider__img">
+      <img src="https://carustad.com/img/blog/what-to-do-when-car-breaks-down.jpg" alt="">
+    </div>
+    <div class="blog-slider__content">
+      <!-- <span class="blog-slider__code">26 December 2019</span> -->
+      <div class="blog-slider__title">Car Breakdown Policy</div>
+      <div class="blog-slider__text">Please read the following terms and conditions document carefully. They set out the terms of a legally binding agreement between you, us, and the insurer. The downloadable file is attached below for your convenience.</div>
+      <ion-button (click)="onClick()" expand="block" shape="round">READ MORE</ion-button>
+    </div>
+  </ng-template>
+  <ng-template class="blog-slider__item" swiperSlide>
+    <div class="blog-slider__img">
+      <img src="https://images.theecoexperts.co.uk/wp-content/uploads/2021/01/Man-fixing-boiler-1.jpeg" alt="">
+    </div>
+    <div class="blog-slider__content">
+      <!-- <span class="blog-slider__code">26 December 2019</span> -->
+      <div class="blog-slider__title">One-Off Boiler Repair</div>
+      <div class="blog-slider__text">Please read the following terms and conditions document carefully. They set out the terms of a legally binding agreement between you, us, and the insurer. The downloadable file is attached below for your convenience.</div>
+      <ion-button (click)="onClick()" expand="block" shape="round">READ MORE</ion-button>
+    </div>
+  </ng-template>
+</swiper>
+<div class="blog-slider__pagination"></div>

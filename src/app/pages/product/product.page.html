@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+
+  <div class="top">
+    <ion-card class="header-card" #image>
+      <div *ngIf="productData.productValue==1" style="width: 100%; height: 100%;">
+        <lottie-player src="../../../assets/anim/boiler.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+        <h3>Boiler Service</h3>
+      </div>
+
+      <div *ngIf="productData.productValue==2" style="width: 100%; height: 100%;">
+        <lottie-player src="../../../assets/anim/appliances.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+        <h3>Appliance</h3>
+      </div>
+
+      <div *ngIf="productData.productValue==3" style="width: 100%; height: 100%;">
+        <lottie-player src="../../../assets/anim/home.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+        <h3>Home Emergency</h3>
+      </div>
+    </ion-card> 
+  </div>
+
+  <div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <h3>{{productlist.ProductName}}</h3>
+
+    <div class="item-container" *ngIf="!hasServiceFlag">
+      <ion-item color="secondary" class="no-padding" *ngFor="let item of [].constructor(10)">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="item-container">
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft" (click)="navToSC()">
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/view.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap">
+            View My Service Contract
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="item-container">
+      <ion-item *ngIf="Hr360ProductID" class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft" (click)="navToClaim()">
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/claim.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap small">
+            Make A Claim
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="item-container">
+      <ion-item color="secondary" class="no-padding slide animate__animated animate__fadeInLeft" *ngIf="hasService&&!Hr360ProductID" (click)="bookaservice()">
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/service.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap small">
+            Book A Service
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="item-container">
+      <ion-item color="secondary" class="no-padding slide animate__animated animate__fadeInLeft" (click)="openUpgrage()">
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/upgrade.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap small">
+            Upgrade My Service Contract
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+
+ 
+</ion-content>

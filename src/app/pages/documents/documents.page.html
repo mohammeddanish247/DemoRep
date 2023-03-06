@@ -1,0 +1,203 @@
+<ion-header>
+  <ion-toolbar color="primary" #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+  <div class="top">
+    <ion-card class="header-card">
+        <lottie-player src="../../../assets/anim/files.json"  background="#dd2127"  speed="0.5" autoplay></lottie-player>
+        <h3>Documents</h3>
+    </ion-card> 
+  </div>
+
+
+  
+  <div class="bottom">
+
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+
+    
+    <ng-container *ngIf="skel">
+      <div class="container">
+        <!-- <div class="heading">
+          <h1>My Documents</h1>
+          <div class="heading_underline"><img src="/assets/icon/Underline.svg"></div>
+        </div> -->
+        <p>All your policy documents are here for you to to review,</p>
+      
+        <div class="dropdown_sec">
+          <p>Property / Ref#</p>
+            <ion-skeleton-text animated style="width: 80%; height: 20px; margin: auto;"></ion-skeleton-text>
+        </div>
+      
+        <div class="current_policy">
+          <p style="font-weight:bolder;">Your Current Policy Documents</p>
+      
+          <p style="margin-left: 15px;">Boiler Break down Policy</p>
+      
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail >
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+      
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail>
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail>
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail>
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <!-- <div class="renewal_policy">
+          <p style="font-weight:bolder;">Your Renewal Policy Documents (2022-23)</p>
+      
+          <p style="margin-left: 15px;">Boiler Break down Policy</p>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail >
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+      
+              <ion-col size="6">
+                <ion-card>
+                  <ion-thumbnail>
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                  </ion-thumbnail>
+                  <ion-skeleton-text [animated]="true" style="width: 50%;margin-top: 25px;"></ion-skeleton-text>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div> -->
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!skel">
+      <div class="container">
+        <!-- <div class="heading">
+          <h1>My Documents</h1>
+          <div class="heading_underline"><img src="/assets/icon/Underline.svg"></div>
+        </div> -->
+        <p id="p">All your policy documents are here for you to to review,</p>
+      
+        <div class="dropdown_sec">
+          <p>Property / Ref#</p>
+          <ion-item lines="none">
+            <ion-select placeholder="Please select property" (ionChange)="dropdownClicked($event)" [selectedText]="policiesData[0].PropertyAddress">
+              <ion-select-option *ngFor="let a of popertyAddresses" value="{{a.LeadID}}">{{a.PropertyAddress}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      
+        <div class="current_policy">
+          <p style="font-weight:bolder;">Your Current Policy Documents</p>
+      
+          <p style="margin-left: 15px;">Boiler Break down Policy</p>
+      
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let a of boilerBrekDownPolicy" >
+              <!-- <ng-container *ngFor="let b of documentLink[0].CurrentPolicyDocuments"> -->
+              <ion-card href="{{a.currentLink}}" *ngIf="a.currentLink">
+                <div>
+                  <img src="{{a.imgUrl}}">
+                </div>
+                <div>
+                  <ion-text>{{a.imgText}}</ion-text>
+                </div>
+              </ion-card>
+            <!-- </ng-container> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+        </div>
+        
+        <hr>
+      
+        <div class="renewal_policy">
+          <p style="font-weight:bolder;">Your Renewal Policy Documents (2022-23)</p>
+      
+          <p style="margin-left: 15px;">Boiler Break down Policy</p>
+      
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let a of boilerBrekDownPolicy">
+              <ion-card href="{{a.renewalLink}}" *ngIf="a.renewalLink">
+                <div>
+                  <img src="{{a.imgUrl}}">
+                </div>
+                <div>
+                  <ion-text>{{a.imgText}}</ion-text>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </div>
+      
+        <hr>
+      
+        <div class="serviceDocument">
+          <p style="font-weight:bolder;">Your Service Documents</p>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" *ngFor="let a of serviceDocument">
+                <ion-card>
+                  <div>
+                    <img src="{{a.imgUrl}}">
+                  </div>
+                  <div>
+                    <ion-text>{{a.imgText}}</ion-text>
+                  </div>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</ion-content>

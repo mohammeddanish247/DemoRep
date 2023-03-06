@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+
+  <div class="top">
+    <ion-card class="header-card" #image>
+      <div *ngIf="productData.productValue==1">
+        <lottie-player src="../../../assets/anim/boiler.json"  background="#dd2127"  speed="1" loop  autoplay></lottie-player>
+        <h3>Boiler Service</h3>
+      </div>
+  
+      <div *ngIf="productData.productValue==2">
+          <lottie-player src="../../../assets/anim/appliances.json"  background="#dd2127"  speed="1" loop autoplay></lottie-player>
+          <h3>Appliance Service</h3>
+      </div>
+  
+      <div *ngIf="productData.productValue==3">
+        <lottie-player src="../../../assets/anim/home.json"  background="#dd2127"  speed="1"  autoplay></lottie-player>
+        <h3>Home Emergency</h3>
+      </div>
+  
+      <div *ngIf="productData.path == 'eligibility'">
+        <lottie-player src="../../../assets/anim/eligibility.json" style="height: 90%;"  background="#dd2127" speed="0.5"  autoplay></lottie-player>
+        <h3>Eligibility</h3>
+      </div>
+  
+      <div *ngIf="productData.path == 'track-claim'">
+        <lottie-player src="../../../assets/anim/track.json" background="#dd2127" speed="1" loop  autoplay></lottie-player>
+        <h3>Track My Jobs</h3>
+      </div>
+  
+      <div *ngIf="productData.path == 'log-claim'">
+        <lottie-player src="../../../assets/anim/logclaim.json"  background="#dd2127" speed="0.5"  autoplay></lottie-player>
+        <h3>Log a Claim</h3>
+      </div>
+    </ion-card> 
+  </div>
+ 
+  <div class="bottom">
+
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+
+    <h3>Property Address</h3>
+
+    <div class="item-container" *ngIf="!(riskAddresses.length) && !noDataFound">
+        <ion-item color="secondary" class="no-padding" *ngFor="let item of [].constructor(10)">
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+    </div>
+
+    <div class="item-container" *ngIf="(riskAddresses.length>0)">
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft" *ngFor="let p of riskAddresses" (click)="navToPage(p.LeadID,p.CRef)">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/home-round-icon.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap small">
+          {{p.PropertyAddress}} <br>
+          {{p.Postcode}} <br>
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div *ngIf="noDataFound">
+      
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft" (click)="onClickCallUs()">
+        <ion-icon slot="end" name="call"></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/cover not found.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap">
+            Sorry! You have No Cover found with this address If you wish to have this cover please contact us.
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+  </div>
+
+</ion-content>

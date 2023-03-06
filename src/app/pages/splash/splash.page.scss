@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+:root,
+.body {
+  //color: rgba(255, 255, 255, 0.474);
+  height: 100%;
+  overflow: hidden;
+  //background: #dd2127;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div {
+  background: 50% 100% / 50% 50% no-repeat
+              radial-gradient(ellipse at bottom, rgb(255, 255, 255), transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 6vw;
+  font-family: "Poppins";
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+             glow 2500ms linear infinite 2000ms;
+
+  @keyframes reveal {
+    80%{
+      letter-spacing: 10px;
+    }
+    100% {
+      background-size: 300% 300%;
+    }
+  }
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 5px #fff;
+      color: #fff;
+    }
+  }
+}  
+
+ion-content{
+  --ion-background-color: #c21d22;
+}
+
+table, th, td {
+    vertical-align: middle;
+    text-align: right;
+    padding: 2vw;
+    line-height: 1;
+  }

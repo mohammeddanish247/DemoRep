@@ -1,0 +1,45 @@
+<ion-content #content>
+  <div class="intro-main">
+    <ion-fab vertical="bottom" horizontal="end">
+      <ion-fab-button color="primary" (click)="goNext()" #ionfabButton [class.active]="addActiveClass">
+        <ion-icon name="chevron-forward"></ion-icon>
+        <ion-label *ngIf="addActiveClass" class="animate__animated" [class.animate__slideInRight]="addActiveClass">
+          Login
+        </ion-label>
+      </ion-fab-button>
+    </ion-fab>
+    <div class="intro-top">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="primary" (click)="goBack()">
+            <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-button slot="end" color="primary" (click)="skipBtn()" fill="clear">
+          Skip
+        </ion-button>
+      </ion-toolbar>
+    </div>
+    <div class="swiper-wrapperr">
+      <swiper [config]="swiperConfig" #swiper>
+        <ng-template *ngFor="let s of slidesData" swiperSlide>
+          <div class="img-wrapper">
+            <img class="intro-img" src="{{s.img}}" alt="" style="display: block; margin: auto;">
+            <div class="intro-desc ion-text-center">
+              <p>
+                <span>{{s.h}}</span><br>
+                {{s.p}}
+              </p>
+              <!-- <h4 class="ion-text-capitalize ion-no-margin">
+                <b>{{s.h}}</b>
+              </h4>
+              <p>
+                {{s.p}}
+              </p> -->
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,289 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Make a Claim</ion-title>
+    <ion-buttons slot="start" *ngIf="!isClaimSubmitted">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="amination" *ngIf="noQuestionFlag">
+    <lottie-player src="../../../assets/anim/not-found.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center"> No Claim Found for this product.<br> <div>Please call our office on 03450774177 for further assistance. </div> </div>
+    <ion-button (click)="onClickCallUs()" expand="block" shape="round" style="width: 50%; margin: 20px auto;" >
+      Call Us
+    </ion-button>
+  </div>
+
+  <div class="item-container" *ngIf="!skeltonFlag" style="margin-top: 70px;">
+    <ion-item color="secondary" lines="none" class="no-padding">
+      <ion-thumbnail slot="start" style="width: 100px; height: 100px; padding: 0px;">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item color="secondary" lines="none"  class="ion-text-center ion-padding">
+      <ion-label>
+        <p>
+          <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <div class="radio-group">
+        <ion-thumbnail>
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-thumbnail>
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+      </div>
+    </ion-item>
+  </div>
+
+  <ion-grid fixed style="margin-top: 70px;" *ngIf="questions && questions.length && (!isClaimSubmitted)">
+    <ion-row>
+      <ion-col size="4">
+        <lottie-player src="../../../assets/anim/247man.json"  background=""  speed="1" loop autoplay></lottie-player>
+      </ion-col>
+      <ion-col color="medium" size="8" style="padding-right: 5%;">
+        <p color="dark" id="bubble" class="speech-bubble animate__animated animate__bounceIn">{{s.Question}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+       <ion-slides [options]="slidesOpts" (ionSlideWillChange)="onSlidesChanged()" (ionSlideDidChange)="onSlidesDidChange()">
+        <ion-slide *ngFor="let slide of questions">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="12" class="ion-text-center ion-padding" style="color: #bca4a4;">{{s.Information}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <form [formGroup]="claimForm">
+                  <div class="qType" *ngIf="slide.Type=='Yes/No'">
+                    <ion-list>
+                      <ion-radio-group name="auto" formControlName="{{slide.ID}}">
+                        <ion-list-header class="ion-no-padding">
+                          <ion-label>Please Select.</ion-label>
+                        </ion-list-header>
+                        <div class="radio-group">
+                          <ion-item color="medium">
+                            <ion-label>Yes</ion-label> &nbsp; &nbsp;
+                            <ion-radio value="Yes"></ion-radio>
+                          </ion-item>
+                          <ion-item color="medium">
+                            <ion-label>No</ion-label> &nbsp; &nbsp;
+                            <ion-radio value="No"></ion-radio>
+                          </ion-item>
+                        </div>
+                      </ion-radio-group>
+                    </ion-list>
+                  </div>
+                  <div class="qType" *ngIf="slide.Type=='TextField'">
+                    <ion-input type="text" placeholder="Type Your Answer Here" formControlName="{{slide.ID}}"></ion-input>
+                  </div>
+                  <div class="qType" *ngIf="slide.Type=='Dropdown'">
+                    <ion-item>
+                      <ion-label>Please Select one option.</ion-label><br>
+                      <ion-select interface="action-sheet"  placeholder="Please Select" formControlName="{{slide.ID}}">
+                        <ng-container *ngFor="let o of slide.Options.split('$')">
+                          <ion-select-option value="{{o}}" >{{o | titlecase}}</ion-select-option>
+                        </ng-container>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div class="qType" *ngIf="slide.Type=='MultilineTextBox'">
+                  <ion-textarea formControlName="{{slide.ID}}" placeholder="Describe Your Issues."></ion-textarea>
+                  </div>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+       </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+  <div *ngIf="isClaimSubmitted && (!isPaymentDone)" class="animation">
+    <lottie-player src="../../../assets/anim/payment.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center ion-padding"> {{access_reason}} <br> <span>{{access_reason_explaination}}</span> </div>
+  </div>
+
+  <div *ngIf="isPaymentDone" class="animation">
+    <lottie-player src="../../../assets/anim/payment-successful.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center ion-padding"> Transaction Completed. <br> <span> Your Transaction Id is {{stripeOutcome.BalanceTransactionId}}, Status is {{stripeOutcome.Status}},  messege is {{stripeOutcome.Outcome.SellerMessage}}</span> </div>
+    <ion-button strong shape="round" color="primary" (click)="receiptClicked()">Download Receipt</ion-button>
+  </div>
+
+  <div *ngIf="isPaymentFailed" class="animation">
+    <lottie-player src="../../../assets/anim/payment-failed.json"  style="width: 90%;height: 40%; margin: 0 auto;" autoplay loop></lottie-player>
+    <div class="heading ion-text-center ion-padding"> Transaction Failed. <br> <span> Your Transaction Id is {{stripeOutcome.FailureBalanceTransactionId}}, Status is {{stripeOutcome.Status}},  messege is {{stripeOutcome.Outcome.SellerMessage}}</span> </div>
+    <ion-button strong shape="round" color="primary" (click)="receiptClicked()">Download Receipt</ion-button>
+  </div>
+
+
+  <ion-modal class="ionmodal" [isOpen]="isModalOpen" [swipeToClose]="true" [initialBreakpoint]="0.7" [breakpoints]="[0,0.7,0.9]" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title class="ion-text-center">Enter Your Payment Details</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content>
+          <form  [formGroup]="form" (ngSubmit)="payClick()" style="margin-top: 10px;">
+            <ion-card color="secondary">
+
+              <div>
+                <p>Card Holder Name:</p>
+                <ion-item  lines="none" >
+                  <ion-label class="icon-label"><ion-icon name="person-outline"></ion-icon></ion-label>
+                  <ion-input type="text" placeholder="e.g. jonh miller" formControlName="name"></ion-input>
+                </ion-item>
+              </div>
+              <div class="errorMsg" *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+                *Card Holder Name is Required
+              </div>
+
+              <div>
+                <div style="display: flex; justify-items: end; justify-content: space-between; align-items: flex-end; margin-right: 20px;">
+                  <div>
+                    <p>Card Number:</p> 
+                  </div>
+                  <div>
+                    <img src="../../../assets/imgs/visa.svg" alt="">
+                    <img src="../../../assets/imgs/master.svg" alt="">
+                    <img src="../../../assets/imgs/american.svg" alt="">
+                  </div>
+                </div>
+                <ion-item  lines="none" >
+                  <ion-label class="icon-label"><ion-icon name="card-outline"></ion-icon></ion-label>
+                  <ion-input type="tel" maxlength="19" minlength="19" placeholder="e.g. 4242 XXXX XXXX XXXX" formControlName="cardNumber" [value]="form.get('cardNumber').value | space"></ion-input>
+                </ion-item>
+              </div>
+              <div class="errorMsg" *ngIf="cardNo.errors?.['required'] && (cardNo.touched || cardNo.dirty)">
+                *Card Number is Required
+              </div>
+              <div class="errorMsg" *ngIf=" (cardNo.dirty && cardNo.invalid)">
+                *Card number must be 16 digits
+              </div>
+        
+              <div>
+                <ion-row>
+                  <ion-col size="7" >
+                    <p>Expiry:</p>
+                    <ion-item lines="none">
+                        <ion-select value="MM" interface="popover" placeholder="MM" formControlName="expMonth">
+                          <ion-select-option *ngFor="let item of [].constructor(12); let i = index" value="{{i+1}}">{{i+1 | number:'2.0'}}</ion-select-option>
+                        </ion-select>
+                        <ion-select value="YYYY" interface="popover" placeholder="YYYY" formControlName="expYear">
+                          <ion-select-option *ngFor="let y of currentYears" value="{{y}}">{{y}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div class="errorMsg" *ngIf="(expMonth.errors?.['required'] && (expMonth.dirty)) || (expYear.errors?.['required'] && (expYear.dirty))" >
+                      *Required
+                    </div>
+                  </ion-col>
+                  <ion-col size="5">
+                    <p>CVV/CVC:</p>
+                    <ion-item  lines="none" >
+                      <ion-input type="tel" placeholder="e.g. 123" maxlength="3" minlength="3" formControlName="cvv"></ion-input>
+                    </ion-item>
+                    <div class="errorMsg" *ngIf="Cvv.errors?.['required'] && (Cvv.dirty || Cvv.touched )">
+                      *Required
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </div>
+        
+              <div> 
+                <p>Address Line:</p>
+                <ion-item  lines="none" >
+                  <ion-label class="icon-label"><ion-icon name="reorder-four-outline"></ion-icon></ion-label>
+                  <ion-input  type="text" placeholder="optional" formControlName="address1" ></ion-input>
+                </ion-item>
+              </div>
+              <h3>Amount: &pound;{{access_value}}</h3>
+              <div id="pay">
+                <ion-button shape="round" type="submit" [disabled]="!form.valid">Pay Now</ion-button>
+              </div>
+            </ion-card>
+          </form>
+      </ion-content>      
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary" style="padding: 15px 0;">
+
+    <div class="footer align-items-center justify-content-space-between"  *ngIf="!skeltonFlag">
+      <ion-thumbnail style="width: 120px; border-radius: 50px; padding: 0;">
+        <ion-skeleton-text [animated]="true" style="height: 70%; border-radius: 50px;"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-thumbnail style="width: 120px; border-radius: 50px; padding: 0;">
+        <ion-skeleton-text [animated]="true"  style="height: 70%; border-radius: 50px;"></ion-skeleton-text>
+      </ion-thumbnail>
+    </div>
+
+    <div class="footer align-items-center justify-content-space-between"  *ngIf="(questions && questions.length && (!isClaimSubmitted))">
+      <ion-button style="width: 120px;" strong shape="round" color="dark"
+        [disabled]="isBeginning" (click)="onBackButtonTouched()" >
+        <span>Back</span>
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+      </ion-button>
+      <ion-button style="width: 120px;" strong shape="round" color="primary" [hidden]="isEnd || isFinalEnd"
+        (click)="onNextButtonTouched()">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <span>Next</span>
+      </ion-button>
+      <ion-button *ngIf="isEnd" strong shape="round" color="success"
+      (click)="onSubmitTouched()">
+      <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+      <span>Submit</span>
+      </ion-button>
+      <ion-button *ngIf="isFinalEnd" strong shape="round" color="success"
+      (click)="onFinalSubmitTouched()">
+      <ion-icon slot="end" name="checkmark-done-outline"></ion-icon>
+      <span>Log Claim</span>
+      </ion-button>
+    </div>
+    
+    <div class="footer align-items-center justify-content-space-between"  *ngIf="isClaimSubmitted && !isPaymentDone">
+    <ion-button strong shape="round" color="primary" (click)="openModal(true)">
+    <!-- <ion-icon slot="end" name="checkmark-done-outline"></ion-icon> -->
+    <span>Proceed to Payment</span>
+    <!--  &pound;{{access_value}} -->
+    </ion-button>
+    </div>
+
+    <div class="footer align-items-center justify-content-space-between"  *ngIf="isPaymentDone">
+      <ion-button strong shape="round" color="primary" (click)="CompleteClicked()">
+        <!-- <ion-icon slot="end" name="checkmark-done-outline"></ion-icon> -->
+        <span>Complete</span>
+        </ion-button>
+    </div>
+    
+  </ion-toolbar>
+
+</ion-footer>

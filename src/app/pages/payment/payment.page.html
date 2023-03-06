@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Enter Your Payment Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form  [formGroup]="form" (ngSubmit)="payClick()" style="margin-top: 10px;">
+      <ion-card color="secondary">
+        <div>
+          <p>Card Number</p>
+          <ion-item  lines="none" >
+            <ion-label class="icon-label"><ion-icon name="card-outline"></ion-icon></ion-label>
+            <ion-input type="tel" maxlength="19" minlength="19" placeholder="e.g. 4242 XXXX XXXX XXXX" formControlName="cardNumber" [value]="form.get('cardNumber').value | space"></ion-input>
+          </ion-item>
+        </div>
+        <div class="errorMsg" *ngIf="cardNo.errors?.['required'] && (cardNo.touched || cardNo.dirty)">
+          *Card Number is Required
+        </div>
+        <div class="errorMsg" *ngIf=" (cardNo.dirty && cardNo.invalid)">
+          *Card number must be 16 digits
+        </div>
+  
+        <div>
+          <ion-row>
+            <ion-col size="7" >
+              <p>Expiry</p>
+              <ion-item lines="none">
+                  <ion-select value="MM" interface="popover" placeholder="MM" formControlName="expMonth">
+                    <ion-select-option *ngFor="let item of [].constructor(12); let i = index" value="{{i+1}}">{{i+1 | number:'2.0'}}</ion-select-option>
+                  </ion-select>
+                  <ion-select value="YYYY" interface="popover" placeholder="YYYY" formControlName="expYear">
+                    <ion-select-option *ngFor="let y of currentYears" value="{{y}}">{{y}}</ion-select-option>
+                  </ion-select>
+              </ion-item>
+              <div class="errorMsg" *ngIf="(expMonth.errors?.['required'] && (expMonth.dirty)) || (expYear.errors?.['required'] && (expYear.dirty))" >
+                *Required
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <p>CVV/CVC</p>
+              <ion-item  lines="none" >
+                <ion-input type="number" placeholder="e.g. 123" maxlength="3" minlength="3" formControlName="cvv"></ion-input>
+              </ion-item>
+              <div class="errorMsg" *ngIf="Cvv.errors?.['required'] && (Cvv.dirty || Cvv.touched )">
+                *Required
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      
+        <div>
+          <p>Card Holder Name</p>
+          <ion-item  lines="none" >
+            <ion-label class="icon-label"><ion-icon name="person-outline"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="e.g. jonh miller" formControlName="name"></ion-input>
+          </ion-item>
+        </div>
+        <div class="errorMsg" *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+          *Card Holder Name is Required
+        </div>
+  
+        <div> 
+          <p>Address Line</p>
+          <ion-item  lines="none" >
+            <ion-label class="icon-label"><ion-icon name="reorder-four-outline"></ion-icon></ion-label>
+            <ion-input  type="text" placeholder="optional" formControlName="address1" ></ion-input>
+          </ion-item>
+        </div>
+        <h3>Amount: &pound;{{ammount}}</h3>
+        <div id="pay">
+          <ion-button shape="round" type="submit" [disabled]="!form.valid">Proceed to confirm</ion-button>
+        </div>
+      </ion-card>
+    </form>
+</ion-content>

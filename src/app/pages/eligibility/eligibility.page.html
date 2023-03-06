@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+  <!-- <lottie-player src="../../../assets/anim/logaclaim.json"  background="#dd2127"  speed="0.5"  style="width: 100%; height: 40%;" autoplay #image></lottie-player> -->
+  
+
+  <div class="top">
+    <ion-card class="header-card" #image>
+        <lottie-player src="../../../assets/anim/eligibility.json" style="height: 90%;"  background="#dd2127"  speed="0.5" autoplay></lottie-player>
+        <h3>Eligibility</h3>
+    </ion-card> 
+  </div>
+
+  <div class="bottom">
+    <h3 class="bottom-title">Product Eligibility</h3>
+
+    <div class="item-container" *ngIf="!(productslist.length)">
+      <ion-item color="secondary" class="no-padding" *ngFor="let item of [].constructor(10)">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+  </div>
+
+    <div class="item-container" *ngIf="(productslist.length>0)">
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft"  *ngFor="let p of productslist" (click)="navToPage(p)">
+        <ion-icon slot="end"  name='chevron-forward'></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/Boiler Breakdown.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap">
+            {{p.ProductName}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="item-container" *ngIf="noDataFound">
+      <ion-item class="no-padding" color="secondary" class="slide animate__animated animate__fadeInLeft" (click)="onClickCallUs()">
+        <ion-icon slot="end" name="call"></ion-icon>
+        <ion-thumbnail slot="start">
+          <img src="../../../assets/imgs/home-round-icon.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <p class="ion-text-wrap">
+            Sorry! You have No Cover found with this address If you wish to have this cover please contact us.
+          </p>
+        </ion-label>
+      </ion-item>
+    </div> 
+    
+  </div>
+</ion-content>

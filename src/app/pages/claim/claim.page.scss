@@ -1,0 +1,230 @@
+.speech-bubble {
+  position: relative;
+  background: #ffdddd;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bolder;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 25px solid transparent;
+  border-right-color: #ffdddd;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -8.5px;
+  margin-left: -23px;
+}
+
+ion-content{
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  --ion-background-color:#ffffff;
+}
+
+.radiowrapper{
+  display: grid;
+  place-items: center;
+}
+
+.wrapper{
+  display: flex;
+  background: transparent;
+  height: 11vh;
+  width: 75%;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px 15px;
+  flex-direction: row;
+  justify-content: center;
+  // box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+}
+.wrapper .option{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid #808080;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #808080;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #ffdddd;
+  background: #ffdddd;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #000;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+  // color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #000;
+}
+
+.footer{
+  display: flex;
+  justify-content: space-around;
+  background: transparent;
+}
+
+
+ion-list{
+  background: transparent;
+}
+
+.radio-group{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  ion-item{
+    border-radius: 10px; 
+    margin: 10px;
+  }
+  
+}
+
+.amination{
+  display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+
+    .heading{
+      font-weight: 900;
+      div{
+          font-weight: 100;
+          width: 85%;
+          margin: auto;
+      }
+  }
+
+}
+ion-skeleton-text {
+  --border-radius: 10px;
+  margin: 3% auto;
+}
+ion-input, ion-textarea{
+  // background-color: #FDF0F1;
+  // border-radius: 50px;
+}
+
+ion-thumbnail{
+  width: 100px;
+  height: 65px;
+  padding: 10px;
+}
+
+.animation{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  span{
+    font-size: 14px;
+    opacity: 0.5;
+  }
+}
+
+.ionmodal{
+  ion-card{
+    border-radius: 20px;
+    box-shadow: none;
+    margin: 0 3%;
+  }
+  
+  ion-modal {
+    --border-radius: 26px;
+  }
+  
+  ion-title{
+    padding-inline: 10px !important;
+    margin-top: 5px;
+  }
+  
+  #pay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin: 25px;
+  }
+  
+  ion-item{
+    margin: 5px 15px;
+    border-radius: 10px;
+    border: 1px #32323457 solid;
+    // --ion-background-color: #fdf0f1;
+  }
+  
+  p{
+    margin: 15px 0 0px 22px;
+    color: #323234a6;
+  }
+  
+  
+  .errorMsg{
+    margin-left: 21px;
+    color:#dd2127;
+  }
+  
+  .icon-label{
+    margin-right: 20px;
+  }
+  
+  ion-icon{
+    margin-top: 5px;
+  }
+  
+  ion-row, ion-col{
+    padding: 0 !important;
+  }
+}

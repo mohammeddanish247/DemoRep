@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar #toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" [appFadeHeader]="toolbar" [appFadeImage]="image" [productData]="productData">
+<div class="top">
+  <ion-card class="header-card" #image>
+      <lottie-player src="../../../assets/anim/support.json"  background="#dd2127" style="width: 90%; margin: auto;"  speed="1" loop autoplay></lottie-player>
+      <h3>247 Help & Support</h3>
+  </ion-card> 
+</div>
+
+<div class="bottom">
+    <div class="bottom-title-wrapper">
+      <div class="bottom-title">
+      </div>
+    </div>
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Helpline & Claims Line</h1>
+        <p class="ion-text-wrap">
+          Please tap to call our 24/7 line on. <br>
+          This line is open every hour of the day, every day of the year!
+        </p>
+        <div class="wrapper" (click)="onClickCallUs()">
+          <div class="icon">
+            <ion-icon name="call" color="secondary"></ion-icon>
+          </div>
+          <div class="number">
+            0345 0774 177
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Customer Service Number</h1>
+        <p class="ion-text-wrap">
+          If you want to speak to a member of our team over the telephone, please tap to call us.
+        </p>
+        <div class="wrapper" (click)="onClickCallUs2()">
+          <div class="icon">
+            <ion-icon name="call" color="secondary"></ion-icon>
+          </div>
+          <div class="number">
+            0345 3192 247
+          </div>
+        </div>
+        <div style="margin-top: 10px;">
+          <p class="ion-text-wrap">
+            Please select the following option to suit your requirements, so that you will be transferred to the correct department. 
+          </p>
+          <div class="options">
+            <ion-avatar slot="start" style="width: 56px; height: 56px;margin-right: 10px;">
+              <img src="../../../assets/imgs/num-1.png"/>
+            </ion-avatar>
+            <ion-label>
+              <p>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12"><span>Take out a home cover policy. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="7">Monday to Friday:</ion-col>
+                    <ion-col size="5">09:00 – 19:30</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="7">Saturday:</ion-col>
+                    <ion-col size="5">09:00 – 14:00</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="7">Sunday:</ion-col>
+                    <ion-col size="5">09:00 – 14:00</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </p>
+            </ion-label>
+          </div>  
+          <div class="options">
+            <ion-avatar slot="start" style="width: 56px; height: 56px;margin-right: 10px;">
+              <img src="../../../assets/imgs/num-2.png"/>
+            </ion-avatar>
+            <ion-label>
+              <p>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12"><span>Existing customer and have queries</span></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="7">Monday to Friday:</ion-col>
+                    <ion-col size="5">09:00 – 18:00</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="7">Saturday:</ion-col>
+                    <ion-col size="5">09:00 – 14:00</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </p>
+            </ion-label>
+          </div> 
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Chat is Available </h1>
+        <p class="ion-text-wrap">
+          We’d love to hear from you. Chat is available 24 hours a day, 7-days a week and every week of the year!
+        </p>
+        <div class="wrapper" (click)="onClickCallUs5()">
+          <div class="icon">
+            <ion-icon name="chatbox-ellipses" color="secondary"></ion-icon>
+          </div>
+          <div>
+            Chat with us
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Enquiries</h1>
+        <p class="ion-text-wrap">
+          For Collaborations, Bloggers, or other marketing-related enquiries, please contact:
+        </p>
+        <div class="wrapper" href="mailto:enquiries@247homerescue.co.uk" (click)="onClickCallUs3()">
+          <div class="icon">
+            <ion-icon name="mail" color="secondary"></ion-icon>
+          </div>
+          <div class="mail">
+            enquiries@247homerescue.co.uk
+          </div>
+        </div>
+        <p class="ion-text-wrap">Emails are monitored during normal office hours only.</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Have any questions? </h1>
+        <p class="ion-text-wrap">
+          We’d love to hear from you. tap the icon we are here to help you.
+        </p>
+        <div class="wrapper" (click)="onClickCallUs4()">
+          <div class="icon">
+            <ion-icon name="headset" color="secondary"></ion-icon>
+          </div>
+          <div>
+            Contact us
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="no-padding" lines="none" color="secondary">
+      <ion-label>
+        <h1 style="font-weight: bold;">Prefer to write?</h1>
+        <p class="ion-text-wrap">
+          You can write to the 24|7 Home Rescue press office at 24|7 Home Rescue (Is a trading style of 247 Home Assist Ltd), Parkhill Business Centre, Padiham Road, BB12 6TG.
+        </p>
+      </ion-label>
+    </ion-item>
+
+
+
+</div>
+</ion-content>

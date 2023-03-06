@@ -1,0 +1,38 @@
+<ion-content class="ioncontent">
+    <div class="top-part">
+        <ion-card class="curve">
+            <ion-img src="./assets/imgs/login-bg-curved2.png"></ion-img>
+            <div class="header-title">
+                <h4>
+                    Welcome to <span>My 24|7</span>
+                </h4>
+                <h3>Log in to your account</h3>
+                <p>Stay uptodate with easy access to your 24|7 account.</p>
+            </div>
+        </ion-card>
+        <div class="boiler">
+            <img src="assets/imgs/welcome-boiler-image.png">
+        </div>
+    </div>
+    <div class="bottom-part">
+        <div class="wrapper">
+            <ion-card>
+                <div>
+                    <div class="form-group ion-padding-top">
+                        <ion-text class="form-control-label text-muted">Surname</ion-text>
+                        <ion-input type="text" id="surname" name="sn" placeholder="e.g. Miller" class="form-control" [(ngModel)]="surname"></ion-input>
+                    </div>
+                    <div class="form-group ion-padding-top">
+                        <ion-text class="form-control-label text-muted">Reference Number</ion-text>
+                        <ion-input type="text" id="refno" name="rn" placeholder="e.g. WSXXXXXXX" class="form-control" [(ngModel)]="cref"></ion-input>
+                    </div>
+                    <button class="login_button text ion-no-margin" shape="round" expand="full" fill="clear" (click)="onLogin($event)">LOGIN</button>
+                    <div class="justify-content-center text-center" style="margin-top: 5px;">
+                        <a><small class="text-muted">Forgot Credentinals?</small></a>
+                    </div>
+                </div>
+            </ion-card>
+            </div>
+    </div>
+
+</ion-content>

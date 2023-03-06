@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#333641">
+    <title>24|7 Homerescue</title>
+</head>
+
+<body>
+    <div>
+       <table>
+        <tr>
+          <td style="font-size:10vw; padding: 3vw;" rowspan="2">24|7</td>
+           <td style="vertical-align: bottom;">Home</td>
+        </tr>
+        <tr>
+         
+          <td style="vertical-align:top;">Rescue</td>
+        </tr>
+      <table>
+       
+    </div>
+</body>
+
+</html>
+
+
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+:root,
+body {
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+  background: #dd2127;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div {
+  background: 50% 100% / 50% 50% no-repeat
+              radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 5vw;
+  font-family: "Source Sans Pro", sans-serif;
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+             glow 2500ms linear infinite 2000ms;
+
+  @keyframes reveal {
+    80%{
+      letter-spacing: 8px;
+    }
+    100% {
+      background-size: 300% 300%;
+    }
+  }
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+  }
+}  

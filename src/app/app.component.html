@@ -1,0 +1,34 @@
+<ion-app>
+  <ion-menu menuId="main-menu" contentId="main" (ionWillOpen)="ionWillOpen()" (ionWillClose)="ionWillClose()" swipe-gesture="false">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <div class="profile_pic"><img src= {{imageUrl}} (error)="onImgError($event)"></div>
+        <div>         
+          <ion-label>
+          <h2 #title></h2>
+          <p class="email" #email></p>
+          </ion-label>
+        </div>
+      </div>
+        <div class="action-button" >
+          <ion-button (click)="addphoto()">
+            <ion-icon slot="start" name="add"></ion-icon> Add Photo
+          </ion-button>
+        </div>
+      <ion-list class="list-items" lines="none">
+        <ion-menu-toggle>
+          <ion-item *ngFor="let p of pages" routerLinkActive="active" (click)="navToPage(p)">
+            <ion-icon slot="start" name="{{p.icon}}"></ion-icon>  {{p.name}}
+          </ion-item>
+      </ion-menu-toggle>
+      </ion-list>
+      <div class="action-button">
+        <ion-button (click)="logout()" color="primary">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon> Log Out &nbsp;
+        </ion-button>
+      </div>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main" #child></ion-router-outlet>
+</ion-app>

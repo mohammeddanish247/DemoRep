@@ -1,0 +1,19 @@
+{
+	"appId": "uk.co.homerescue.app",
+	"appName": "My247",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+
+	"plugins": {
+		"SplashScreen": {
+		  "launchShowDuration": 5000,
+		  "launchAutoHide": false,
+		  "backgroundColor": "#ffff00ff",
+		  "androidSplashResourceName": "splash",
+		  "splashFullScreen": true
+		  
+		}
+		}
+}
+
+

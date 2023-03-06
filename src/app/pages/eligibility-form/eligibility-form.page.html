@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Eligibility Form</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="card-background-page" padding>
+  <ion-card class="card">
+    <form (ngSubmit)="submitForm()" #eligibilityForm="ngForm">
+      <ion-list lines="none">
+        <div *ngFor="let p of fields">
+          <div [ngSwitch]="p.Type">
+            <ion-item *ngSwitchCase="'Checkbox'">
+              <ion-label text-wrap>{{p.Question}}</ion-label>
+              <ion-checkbox
+                [(ngModel)]="model[p.EligibilityID]"
+                [name]="p.EligibilityID"
+              ></ion-checkbox>
+            </ion-item>
+            <ion-item *ngSwitchDefault>
+              <ion-label text-wrap floating
+                >{{p.Question}}&nbsp;
+                <span *ngIf="p.Mandatory">*</span>
+              </ion-label>
+              <ion-input
+                [(ngModel)]="model[p.EligibilityID]"
+                [name]="p.EligibilityID"
+                [required]="p.Mandatory"
+                [readonly]="complete"
+                (focusout)="checkFields($event);"
+              ></ion-input>
+            </ion-item>
+            <div class="alert" *ngIf="validation[p.EligibilityID]">
+              This is a required field
+            </div>
+          </div>
+        </div>
+      </ion-list>
+      <div [hidden]="complete">
+        <span>* required fields</span>
+        <button
+          ion-button
+          type="submit"
+          [disabled]="!eligibilityForm.form.valid"
+          class="submit-btn"
+          block
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
